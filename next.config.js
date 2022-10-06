@@ -1,7 +1,16 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-}
+const nextConfig = async () => {
+  const nextConfig = {
+    reactStrictMode: true,
+    swcMinify: true,
 
-module.exports = nextConfig
+    webpack: (config, context) => {
+      config.resolve.symlinks = false;
+      return config;
+    },
+  };
+
+  return nextConfig;
+};
+
+module.exports = nextConfig;
